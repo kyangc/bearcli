@@ -5,7 +5,7 @@ const configPath = `${os.homedir()}/.bearcli.yml`
 
 function saveConfigObj(obj) {
     try {
-        this.createEmptyConfigFileIfNeeded(configPath)
+        createEmptyConfigFileIfNeeded(configPath)
         fs.writeFileSync(configPath, yaml.dump(obj), 'utf8')
     } catch (e) {
         console.log(e)
@@ -15,7 +15,7 @@ function saveConfigObj(obj) {
 function readConfigObj() {
     // read yml object
     try {
-        this.createEmptyConfigFileIfNeeded(configPath)
+        createEmptyConfigFileIfNeeded(configPath)
         let config = yaml.load(fs.readFileSync(configPath))
         if (config) {
             return config
@@ -34,7 +34,7 @@ function createEmptyConfigFileIfNeeded(path) {
 module.exports = {
 
     queryConfig(key) {
-        let configObj = this.readConfigObj()
+        let configObj = readConfigObj()
         if (configObj) {
             return configObj[key]
         } else {
@@ -43,11 +43,11 @@ module.exports = {
     },
 
     saveConfig(key, value) {
-        let configObj = this.readConfigObj()
+        let configObj = readConfigObj()
         if (!configObj) {
             configObj = {}
         }
         configObj[key] = value
-        this.saveConfigObj(configObj)
+        saveConfigObj(configObj)
     }
 }

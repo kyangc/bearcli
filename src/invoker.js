@@ -33,7 +33,5 @@ module.exports = {
             // console.log(`exec shell script: \n${shellCommand}`)
             shell.exec(shellCommand)
         }
-
-        require('./utils/config-parser').queryConfig()
     }
 }
