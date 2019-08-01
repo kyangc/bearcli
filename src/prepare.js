@@ -1,4 +1,5 @@
 const invoker = require('./bear-invoker')
+const fuzzy = require('fuzzy')
 
 function bindBearActionCommands(yargs) {
     let dir = require('path').join(__dirname, '../src/bear-commands')
@@ -25,6 +26,13 @@ function bindNormalCommands(yargs) {
                 })
             }
         }
+    })
+}
+
+function prepareCompletion(yargs) {
+    yargs.completion('build-completion', 'Generate completions for bearcli.', (currentCommand, argv) => {
+        let source = ['create', 'weekly', 'search', 'adduser']
+        return fuzzy.filter(currentCommand, source).map((e) => {return e.string})
     })
 }
 
