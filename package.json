@@ -1,10 +1,12 @@
 {
   "name": "bearcli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A CLI for Mac app Bear.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node post-install.js",
+    "preuninstall": "node post-uninstall.js"
   },
   "bin": {
     "bearcli": "index.js"
@@ -15,7 +17,11 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.2",
+    "clear": "^0.1.0",
+    "inquirer": "^6.5.0",
+    "inquirer-autocomplete-prompt": "^1.0.1",
     "js-yaml": "^3.13.1",
+    "omelette": "^0.4.12",
     "shelljs": "^0.8.3",
     "yargs": "^13.3.0"
   }
