@@ -1,5 +1,4 @@
 const invoker = require('./bear-invoker')
-const omelette = require('omelette')
 
 function bindBearActionCommands(yargs) {
     let dir = require('path').join(__dirname, '../src/bear-commands')
@@ -29,12 +28,6 @@ function bindNormalCommands(yargs) {
     })
 }
 
-function setupAutoCompletion() {
-    omelette('bearcli').tree({
-        cruel: ['create', 'weekly']
-    }).init()
-}
-
 module.exports = {
 
     run() {
@@ -45,9 +38,6 @@ module.exports = {
 
         // read and require all normal commands
         bindNormalCommands(yargs)
-
-        // setup omelette
-        setupAutoCompletion()
 
         // run yargs
         let args = yargs.usage('Usage: bearcli [actions] [params]')
